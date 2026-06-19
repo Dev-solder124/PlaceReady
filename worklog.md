@@ -39,3 +39,28 @@ Stage Summary:
 - AI analysis is grounded via a heuristic baseline blended with the LLM output, with graceful fallback.
 - 10 seeded students available for immediate demo; insights charts populate after analysis.
 - Clean lint, no runtime errors, responsive + accessible UI with light/dark theme.
+
+---
+Task ID: 2
+Agent: main (Z.ai Code)
+Task: Add a README explaining project overview, setup instructions, and architecture/design decisions.
+
+Work Log:
+- Reviewed package.json scripts, .env (DATABASE_URL), and the full src/ tree to ensure README accuracy.
+- Confirmed no README existed at project root (only download/README.md).
+- Wrote /home/z/my-project/README.md covering:
+  - Project overview & feature list
+  - Tech stack table
+  - Step-by-step setup (install, db:push, seed, dev, lint) + one-liner quick start
+  - Full project structure tree with per-file descriptions
+  - Architecture & design decisions (8 subsections: single-page API-driven, hybrid AI+heuristic scoring, graceful fallback, strict JSON prompting + defensive parsing, JSON-in-SQLite data modeling, frontend state/fetching, UI/UX standards, security boundaries)
+  - API reference for all 6 endpoints with example response shapes
+  - Prisma data model excerpt + readiness level thresholds table
+  - How the AI analysis works (step-by-step pipeline)
+  - Seeded data description
+  - Available scripts table
+
+Stage Summary:
+- README.md created at project root (~330 lines), comprehensive and accurate to the actual implementation.
+- Documents the hybrid scoring approach (60% LLM + 40% heuristic), the graceful fallback, the JSON-in-SQLite trade-off, and all API contracts.
+- No code changes; documentation-only task.
