@@ -28,9 +28,6 @@ export const metadata: Metadata = {
     "college",
   ],
   authors: [{ name: "PlaceReady" }],
-  icons: {
-    icon: "/logo.svg",
-  },
 };
 
 export default function RootLayout({
