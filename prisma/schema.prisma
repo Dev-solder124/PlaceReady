@@ -1,0 +1,55 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Student {
+  id           String    @id @default(cuid())
+  name         String
+  email        String    @unique
+  phone        String?
+  rollNumber   String?
+  branch       String
+  year         Int
+  graduationYear Int
+  cgpa         Float
+  tenthPct     Float?
+  twelfthPct   Float?
+  // JSON-encoded arrays/objects (SQLite has no native array type)
+  skills          String // JSON: [{ name, level (1-5) }]
+  projects        String // JSON: [{ title, description, tech[] }]
+  certifications  String // JSON: [{ name, issuer, date }]
+  internships     String // JSON: [{ company, role, duration, description }]
+  achievements    String // JSON: string[]
+  linkedinUrl     String?
+  githubUrl       String?
+  resumeUrl       String?
+  status          String  @default("Active") // Active | Placed | Looking | Not Looking
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  analysis Analysis?
+}
+
+model Analysis {
+  id                 String   @id @default(cuid())
+  studentId          String   @unique
+  student            Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  summary            String
+  strengths          String   // JSON: string[]
+  improvements       String   // JSON: string[]
+  recommendedSkills  String   // JSON: string[]
+  suggestedRoles     String   // JSON: string[]
+  readinessScore     Int      // 0-100
+  readinessLevel     String   // Not Ready | Developing | Ready | Highly Ready
+  readinessReasoning String
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+}
