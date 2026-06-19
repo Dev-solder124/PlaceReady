@@ -1,4 +1,4 @@
-import ZAI from "z-ai-web-dev-sdk";
+import { GoogleGenAI } from "@google/genai";
 import {
   type Student,
   type Analysis,
@@ -128,19 +128,17 @@ export async function analyzeStudent(
 
   let ai: AIAnalysisResult;
   try {
-    const zai = await ZAI.create();
-    const completion = await zai.chat.completions.create({
-      messages: [
-        { role: "assistant", content: SYSTEM_PROMPT },
-        {
-          role: "user",
-          content: `${buildStudentProfileText(student)}\n\nBaseline heuristic readiness score computed from profile signals: ${baseline.score}/100. Use this as an anchor but adjust based on qualitative factors (project depth, skill relevance, internship quality). Respond with ONLY the JSON.`,
-        },
-      ],
-      thinking: { type: "disabled" },
+    const aiClient = new GoogleGenAI({});
+    const response = await aiClient.models.generateContent({
+      model: "gemini-3.5-flash",
+      contents: `${buildStudentProfileText(student)}\n\nBaseline heuristic readiness score computed from profile signals: ${baseline.score}/100. Use this as an anchor but adjust based on qualitative factors (project depth, skill relevance, internship quality). Respond with ONLY the JSON.`,
+      config: {
+        systemInstruction: SYSTEM_PROMPT,
+        responseMimeType: "application/json",
+      },
     });
 
-    const content = completion.choices[0]?.message?.content ?? "";
+    const content = response.text ?? "";
     const parsed = extractJson(content) as Record<string, unknown>;
 
     ai = {

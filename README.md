@@ -88,12 +88,12 @@ contributed.
 | Icons            | lucide-react                                        |
 | Charts           | recharts                                            |
 | Database         | Prisma ORM + SQLite                                 |
-| AI               | z-ai-web-dev-sdk (LLM chat completions)             |
+| AI               | @google/genai (LLM chat completions)             |
 | Theme            | next-themes (light/dark)                            |
 | Notifications    | sonner                                              |
 | Runtime / PM     | Bun                                                 |
 
-> **Note on the AI SDK:** `z-ai-web-dev-sdk` is **server-only**. It is never
+> **Note on the AI SDK:** `@google/genai` is **server-only**. It is never
 > imported in client components — all AI calls happen inside Next.js API
 > routes.
 
@@ -200,7 +200,7 @@ bun run db:push && bun run scripts/seed.ts && bun run dev
 │   │   ├── db.ts                # Prisma client singleton
 │   │   ├── types.ts             # Shared domain types + constants
 │   │   ├── student.ts           # Serialization + heuristic readiness baseline
-│   │   ├── ai.ts                # z-ai-web-dev-sdk analysis + fallback
+│   │   ├── ai.ts                # @google/genai analysis + fallback
 │   │   ├── api-client.ts        # Typed fetch wrappers for the frontend
 │   │   └── utils.ts             # cn() helper
 │   └── hooks/                   # use-mobile, use-toast

@@ -1,14 +1,14 @@
 ---
 Task ID: 1
-Agent: main (Z.ai Code)
+Agent: main (Gemini Code)
 Task: Build a Placement Readiness Platform with student management, AI analysis, readiness scoring, and a dashboard.
 
 Work Log:
-- Explored project scaffold (Next.js 16, TS, Tailwind 4, shadcn/ui, Prisma/SQLite, z-ai-web-dev-sdk).
-- Invoked the LLM skill to learn the z-ai-web-dev-sdk chat completions API.
+- Explored project scaffold (Next.js 16, TS, Tailwind 4, shadcn/ui, Prisma/SQLite, @google/genai).
+- Invoked the LLM skill to learn the @google/genai chat completions API.
 - Designed Prisma schema: `Student` (academic + JSON-encoded skills/projects/certs/internships/achievements) and `Analysis` (1:1) for cached AI results. Pushed to SQLite via `bun run db:push`.
 - Created shared domain types (`src/lib/types.ts`) and serialization helpers (`src/lib/student.ts`) including a transparent heuristic readiness baseline (CGPA / skills / projects / internships / certs / achievements).
-- Built AI analysis module (`src/lib/ai.ts`) using z-ai-web-dev-sdk: sends a structured system+user prompt that forces JSON output (summary, strengths, improvements, recommendedSkills, suggestedRoles, readinessScore, readinessReasoning). Blends the LLM score with the heuristic baseline (60/40) and falls back gracefully to a rule-based analysis if the LLM call fails.
+- Built AI analysis module (`src/lib/ai.ts`) using @google/genai: sends a structured system+user prompt that forces JSON output (summary, strengths, improvements, recommendedSkills, suggestedRoles, readinessScore, readinessReasoning). Blends the LLM score with the heuristic baseline (60/40) and falls back gracefully to a rule-based analysis if the LLM call fails.
 - Seeded 10 realistic engineering students (`scripts/seed.ts`) across CS/IT/ECE/EE/Mech branches with varied profiles.
 - Built backend API routes:
   - `GET/POST /api/students` (list with search/branch/status/minScore/sort filters; create)
@@ -42,7 +42,7 @@ Stage Summary:
 
 ---
 Task ID: 2
-Agent: main (Z.ai Code)
+Agent: main (Gemini Code)
 Task: Add a README explaining project overview, setup instructions, and architecture/design decisions.
 
 Work Log:

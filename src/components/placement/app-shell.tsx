@@ -293,7 +293,7 @@ export function AppShell() {
             PlaceReady — AI Placement Readiness Platform. Built for colleges to
             track and improve student placement outcomes.
           </p>
-          <p>Powered by Z.ai for AI-driven profile analysis.</p>
+          <p>Powered by Gemini 3.5 Flash for AI-driven profile analysis.</p>
         </div>
       </footer>
 
